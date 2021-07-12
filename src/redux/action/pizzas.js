@@ -7,10 +7,7 @@ export const setLoaded = (payload) => ({
 
 
 export const fetchPizzas = () => (dispatch) => {
-    dispatch({
-        type:'SET_LOADED',
-        payload: false,
-})
+   dispatch(setLoaded(false))
     axios.get('http://localhost:3001/pizzas').then(({data}) => {
         dispatch(setPizzas(data));
 

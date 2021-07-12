@@ -18,7 +18,7 @@ function Home() {
     const dispatch = useDispatch();
     const items = useSelector(({pizzas}) => pizzas.items);
     const isLoaded = useSelector(({pizzas}) => pizzas.isLoaded);
-    const { category, sortBy } = useSelector(({ filters }) => filters);
+    //const { category, sortBy } = useSelector(({ filters }) => filters);
 
 
 
@@ -30,8 +30,9 @@ function Home() {
 
 
 
-    const onSelectCotegory = index => {
+     const onSelectCotegory = (index) => {
         dispatch(setCategory(index))
+         console.log(setCategory(index))
     }
 
     return (
