@@ -6,6 +6,7 @@ function PizzaLoadingBlock() {
     return (
 
         <ContentLoader
+            className="pizza-block"
             speed={2}
             width={280}
             height={457}

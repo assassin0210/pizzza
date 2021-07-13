@@ -1,35 +1,26 @@
 import React from 'react'
 
-const SortPopup = React.memo(function SortPopup({items}) {
+const SortPopup = React.memo(function SortPopup({items, activeSortType, onClickSortType }) {
     const [visiblePopup, setVisiblePopup] = React.useState(false)
-    const [activeItem, setActiveItem] = React.useState(0)
-    const activeLable = items[activeItem].name;
-
-
+    const activeLabel = items.find((obj) => obj.type === activeSortType).name;
     const sortRef = React.useRef();
-
     const hendleOutsideClick = (e) => {
-        if( !e.path.includes(sortRef.current)){
+        if (!e.path.includes(sortRef.current)) {
             setVisiblePopup(false)
-
         }
-
     }
 
     React.useEffect(() => {
         document.body.addEventListener('click', hendleOutsideClick)
-
-
     }, [])
 
     const onSelectItem = (index) => {
-        setActiveItem(index)
+        onClickSortType(index)
         setVisiblePopup(false)
     }
     const togglePopup = () => {
         setVisiblePopup(!visiblePopup)
     }
-
 
     return (
         <div className="sort" ref={sortRef}>
@@ -48,21 +39,18 @@ const SortPopup = React.memo(function SortPopup({items}) {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={togglePopup}>{activeLable}</span>
+                <span onClick={togglePopup}>{activeLabel}</span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     {items && items.map((obj, index) => <li
-                        onClick={() => {
-                            onSelectItem(index)
+                        onClick={() => { onSelectItem(obj)
                         }}
                         key={`${obj.type}_${index}`}
-                        className={activeItem === index ? "active" : ''}>{obj.name}</li>)}
+                        className={activeSortType === obj.type ? "active" : ''}>{obj.name}</li>)}
                 </ul>
             </div>}
-
         </div>
     )
 })
-
 export default SortPopup
