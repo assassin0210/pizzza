@@ -2,8 +2,10 @@ import React from 'react'
 import {useSelector} from "react-redux";
 
 
-const CartItem  = ({name,size,type, totalPrice, totalCount}) => {
-
+const CartItem  = ({id,name,size,type, totalPrice, totalCount,onRemoveItem}) => {
+const handleRemoveItem=()=>{
+    onRemoveItem(id)
+}
 
     return (
 
@@ -47,7 +49,7 @@ const CartItem  = ({name,size,type, totalPrice, totalCount}) => {
         <div className="cart__item-price">
             <b>{totalPrice} ₽</b>
         </div>
-        <div className="cart__item-remove">
+        <div  onClick={handleRemoveItem} className="cart__item-remove">
             <div className="button button--outline button--circle">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
