@@ -1,3 +1,4 @@
 export const addPizzaToCart =(pizzaObj)=>({
-    type: 'ADD_PIZZA_CART'
+    type: 'ADD_PIZZA_CART',
+    payload: pizzaObj,
 })

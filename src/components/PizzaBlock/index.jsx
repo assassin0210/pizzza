@@ -4,9 +4,9 @@ import Button from "../Button";
 
 
 
-function Index({ id, name, imageUrl, price, types, sizes,onClickAddPizza}) {
+function Index({ id, name, imageUrl, price, types, sizes,onClickAddPizza,addedCount}) {
     const [activeType, setActiveType] = React.useState(types[0])
-    const [activeSize, setActiveSize] = React.useState(sizes[0])
+    const [activeSize, setActiveSize] = React.useState(0)
 
     const availableTypes = ["тонкое", "традиционное"]
     const availableSize = [26, 30, 40];
@@ -16,6 +16,18 @@ function Index({ id, name, imageUrl, price, types, sizes,onClickAddPizza}) {
     }
     const onSelectSize = (index) => {
         setActiveSize(index)
+    }
+
+    const onAddPizza =()=>{
+        const obj ={
+            id,
+            name,
+            imageUrl,
+            price,
+            size:availableTypes[activeSize],
+            type:availableSize[activeType],
+        }
+        onClickAddPizza(obj)
     }
 
 
@@ -54,7 +66,7 @@ function Index({ id, name, imageUrl, price, types, sizes,onClickAddPizza}) {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price} ₽</div>
-                <Button onClick={()=>onClickAddPizza({id, name, imageUrl})} className=" button--add" outline>
+                <Button onClick={onAddPizza} className=" button--add" outline>
                     <svg
                         width="12"
                         height="12"
@@ -68,7 +80,7 @@ function Index({ id, name, imageUrl, price, types, sizes,onClickAddPizza}) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    {addedCount && <i>{addedCount}</i>}
                 </Button>
             </div>
         </div>
