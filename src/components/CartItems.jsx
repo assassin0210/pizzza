@@ -1,5 +1,4 @@
 import React from 'react'
-import {useSelector} from "react-redux";
 
 
 const CartItem  = ({id,name,size,type, totalPrice, totalCount,onRemoveItem, onPlusItem, onMinusItem}) => {

@@ -14,10 +14,10 @@ function Header() {
 
             <Link to={'/'}>
                 <div className="header__logo">
-                    <img width="38" src={logo} alt="Pizza logo"/>
+                    <img width="50" src={logo} alt="Pizza logo"/>
                     <div>
 
-                        <h1>React Pizza</h1>
+                        <h1>S.A. Pizza</h1>
                         <p>самая вкусная пицца во вселенной</p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@ function Header() {
                 <Link to={'/cart'}>
                     <Button className='button--cart'>
                         <span>{totalPrice}</span>
-                        <div className="button__delimiter"></div>
+                        <div className="button__delimiter"/>
                         <svg
                             width="18"
                             height="18"

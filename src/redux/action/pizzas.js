@@ -6,16 +6,12 @@ export const setLoaded = (payload) => ({
 })
 
 
-export const fetchPizzas = (category, sortBy) => (dispatch) => {
+export const fetchPizzas = () => (dispatch) => {
     dispatch(setLoaded(false))
     axios
-        .get(
-            `/pizzas?${
-                category !== null ? `category=${category}` : ``
-            }&_sort=${sortBy.type}&_order=${sortBy.order}`,
-        )
+        .get("https://alexsokol.ru/data/db.json")
         .then(({data}) => {
-            dispatch(setPizzas(data));
+            dispatch(setPizzas(data.pizzas));
         })
 };
 
