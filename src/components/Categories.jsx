@@ -5,8 +5,8 @@ const Categories = React.memo(function Categories ({activeCategory,items,onClick
 
 
     return (
-        <div className="categories">
-            <ul>
+        <div className="categories" >
+            <ul style={{display:'flex',flexWrap:'wrap',gap:'8px'}}>
                 <li onClick={() => onClickCatygory(null)}
                     className={activeCategory === null ? 'active' : ''}
                 >Все

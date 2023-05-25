@@ -1,4 +1,4 @@
-import axios from "axios";
+import {pizzas} from "../../db";
 
 export const setLoaded = (payload) => ({
     type: 'SET_LOADED',
@@ -8,11 +8,9 @@ export const setLoaded = (payload) => ({
 
 export const fetchPizzas = () => (dispatch) => {
     dispatch(setLoaded(false))
-    axios
-        .get("https://alexsokol.ru/data/db.json")
-        .then(({data}) => {
-            dispatch(setPizzas(data.pizzas));
-        })
+    dispatch(setPizzas(pizzas))
+    dispatch(setLoaded(true))
+
 };
 
 export const setPizzas = (items) => ({

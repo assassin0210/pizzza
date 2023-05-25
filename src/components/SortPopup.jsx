@@ -1,16 +1,16 @@
-import React from 'react'
+import {memo, useEffect, useRef, useState} from "react";
 
-const SortPopup = React.memo(function SortPopup({items, activeSortType, onClickSortType}) {
-  const [visiblePopup, setVisiblePopup] = React.useState(false)
+const SortPopup = memo(function SortPopup({items, activeSortType, onClickSortType}) {
+  const [visiblePopup, setVisiblePopup] = useState(false)
   const activeLabel = items.find((obj) => obj.type === activeSortType).name;
-  const sortRef = React.useRef();
+  const sortRef = useRef(null);
   const hendleOutsideClick = (e) => {
-    if (!e.path.includes(sortRef.current)) {
-      setVisiblePopup(false)
-    }
+    // if (!e.path.includes(sortRef.current)) {
+    //   setVisiblePopup(false)
+    // }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.addEventListener('click', hendleOutsideClick)
     return () => document.body.removeEventListener("click", hendleOutsideClick)
   }, [])
@@ -22,7 +22,6 @@ const SortPopup = React.memo(function SortPopup({items, activeSortType, onClickS
   const togglePopup = () => {
     setVisiblePopup(!visiblePopup)
   }
-
   return (
     <div className="sort" ref={sortRef}>
       <div className="sort__label">
@@ -45,11 +44,11 @@ const SortPopup = React.memo(function SortPopup({items, activeSortType, onClickS
       {visiblePopup && <div className="sort__popup">
         <ul>
           {items && items.map((obj, index) => <li
-            onClick={() => {
-              onSelectItem(obj)
-            }}
-            key={`${obj.type}_${index}`}
-            className={activeSortType === obj.type ? "active" : ''}>{obj.name}</li>)}
+              onClick={() => {
+                onSelectItem(obj)
+              }}
+              key={`${obj.type}_${index}`}
+              className={activeSortType === obj.type ? "active" : ''}>{obj.name}</li>)}
         </ul>
       </div>}
     </div>

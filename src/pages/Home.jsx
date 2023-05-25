@@ -1,5 +1,5 @@
 import React from 'react'
-import {Categories, SortPopup, PizzaBlock, PizzaLoadingBlock} from "../components";
+import {Categories, PizzaBlock, PizzaLoadingBlock, SortPopup} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategory, setSortBy} from "../redux/action/filters";
 import {addPizzaToCart} from "../redux/action/cart";
@@ -36,7 +36,7 @@ function Home() {
 
   return (
     <div className="container">
-      <div className="content__top">
+      <div className="content__top" style={{display:'flex',flexWrap:'wrap',gap:'8px'}}>
         <Categories
           activeCategory={category}
           onClickCatygory={onSelectCotegory}
